@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+	<meta charset="utf-8"/>
+	<head>
+		<title>象棋</title>
+	</head>
+	<body>
+		<canvas id="cvs" width="900px" height="900px">&lt;canvas&gt; not available</canvas>
+	</body>
+	<script>
+		var canvas = document.getElementById("cvs");
+		var context = canvas.getContext("2d");
+		const width = canvas.width, height = canvas.height;
+		var selected = -1, turn = "d";
+	</script>
+	<script src="runtime.js"></script>
+</html>

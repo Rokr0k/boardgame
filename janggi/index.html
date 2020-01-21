@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+	<meta charset="utf-8"/>
+	<head>
+		<title>장기</title>
+	</head>
+	<body>
+		<canvas id="cvs" width="900px" height="900px">&lt;canvas&gt; not available</canvas>
+		<div>
+			<form id="redSelect" onchange="redChange()">
+				한나라
+				<label><input type="radio" name="red" value="in" checked="checked"/>안상차림</label>
+				<label><input type="radio" name="red" value="out"/>바깥상차림</label>
+				<label><input type="radio" name="red" value="left"/>왼상차림</label>
+				<label><input type="radio" name="red" value="right"/>오른상차림</label>
+			</form>
+			<form id="bluSelect" onchange="bluChange()">
+				초나라
+				<label><input type="radio" name="blu" value="in" checked="checked"/>안상차림</label>
+				<label><input type="radio" name="blu" value="out"/>바깥상차림</label>
+				<label><input type="radio" name="blu" value="left"/>왼상차림</label>
+				<label><input type="radio" name="blu" value="right"/>오른상차림</label>
+			</form>
+		</div>
+	</body>
+	<script>
+		var canvas = document.getElementById("cvs");
+		var context = canvas.getContext("2d");
+		const width = canvas.width, height = canvas.height;
+		var selected = -1, turn = "b";
+		var redSelect = document.getElementById("redSelect");
+		var bluSelect = document.getElementById("bluSelect");
+		var started = false;
+	</script>
+	<script src="runtime.js"></script>
+</html>

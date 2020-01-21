@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8"/>
+	<head>
+		<title>Go</title>
+	</head>
+	<body>
+		<canvas id="cvs" width="900px" height="900px">&lt;canvas&gt; not available</canvas>
+		<div>
+			<form id="select">
+				<label><input type="radio" name="mode" value="black" checked="checked"/>Black</label>
+				<label><input type="radio" name="mode" value="white"/>White</label>
+			</form>
+		</div>
+	</body>
+	<script>
+		var canvas = document.getElementById("cvs");
+		var context = canvas.getContext("2d");
+		const width = canvas.width, height = canvas.height;
+		var mode = "v";
+		var select = document.getElementById("select");
+		canvas.ondblclick = function () {
+			if(document.selection && document.selection.empty) {
+				document.selection.empty()
+			} else if(window.getSelection) {
+				var sel = window.getSelection()
+				sel.removeAllRanges()
+			}
+		}
+	</script>
+	<script src="runtime.js"></script>
+</html>
