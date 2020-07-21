@@ -152,13 +152,13 @@
             if(x<0||x>8)
                 return;
             if(y<0) {
-                selection = {s: 'b', i: Math.floor((cvs.width-e.offsetX-marg)/size.y*2)};
+                selection = {s: 'b', i: Math.floor((cvs.width-_x-marg)/size.y*2)};
                 if(selection.i>=rcaught.length)
                     selection = -1;
                 return;
             }
             else if(y>9) {
-                selection = {s: 'r', i: Math.floor((e.offsetX-marg)/size.y*2)};
+                selection = {s: 'r', i: Math.floor((_x-marg)/size.y*2)};
                 if(selection.i>=bcaught.length)
                     selection = -1;
                 return;
