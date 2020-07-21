@@ -142,31 +142,29 @@
         cvs.ontouchstart = e => clickEvent(e.touches[0].offsetX, e.touches[0].offsetY);
         function clickEvent(_x, _y) {
             var x = Math.round((_x-marg)*8/(cvs.width-marg*2)), y = Math.round((_y-marg)*9/(cvs.height-marg*2));
-            if(x<0||x>8)
+            if(x<0||x>8||y<0||y>9)
                 return;
+            if(selection==-1) {
+                if(red[x][y].length||blu[8-x][9-y].length) {
+                    selection = {x: x, y: y};
+                }
+            }
             else {
-                if(selection==-1) {
-                    if(y>=0&&y<10&&(red[x][y].length||blu[8-x][9-y].length)) {
-                        selection = {x: x, y: y};
+                if(red[selection.x][selection.y].length&&red[x][y].length==0) {
+                    red[x][y] = red[selection.x][selection.y];
+                    red[selection.x][selection.y] = '';
+                    if(blu[8-x][9-y].length) {
+                        blu[8-x][9-y] = '';
                     }
                 }
-                else {
-                    if(red[selection.x][selection.y].length&&red[x][y].length==0) {
-                        red[x][y] = red[selection.x][selection.y];
-                        red[selection.x][selection.y] = '';
-                        if(blu[8-x][9-y].length) {
-                            blu[8-x][9-y] = '';
-                        }
+                else if(blu[8-selection.x][9-selection.y].length&&blu[8-x][9-y].length==0) {
+                    blu[8-x][9-y] = blu[8-selection.x][9-selection.y];
+                    blu[8-selection.x][9-selection.y] = '';
+                    if(red[x][y].length) {
+                        red[x][y] = '';
                     }
-                    else if(blu[8-selection.x][9-selection.y].length&&blu[8-x][9-y].length==0) {
-                        blu[8-x][9-y] = blu[8-selection.x][9-selection.y];
-                        blu[8-selection.x][9-selection.y] = '';
-                        if(red[x][y].length) {
-                            red[x][y] = '';
-                        }
-                    }
-                    selection = -1;
                 }
+                selection = -1;
             }
         }
     </script>

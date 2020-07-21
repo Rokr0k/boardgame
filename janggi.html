@@ -183,11 +183,11 @@
         cvs.ontouchstart = e => clickEvent(e.touches[0].offsetX, e.touches[0].offsetY);
         function clickEvent(_x, _y) {
             var x = Math.round((_x-marg)*8/(cvs.width-marg*2)), y = Math.round((_y-marg)*9/(cvs.height-marg*2));
-            if(x<0||x>8)
+            if(x<0||x>8||y<0||y>9)
                 return;
             else {
                 if(selection==-1) {
-                    if(y>=0&&y<10&&(red[x][y].length||blu[8-x][9-y].length)) {
+                    if(red[x][y].length||blu[8-x][9-y].length) {
                         selection = {x: x, y: y};
                     }
                 }
