@@ -47,23 +47,23 @@
             ctx.stroke();
             ctx.closePath();
             ctx.beginPath();
-            ctx.moveTo(getPosX(3)+4, getPosY(3));
+            ctx.moveTo(getPosX(3)+2, getPosY(3));
             ctx.arc(getPosX(3), getPosY(3), 4, 0, Math.PI*2);
-            ctx.moveTo(getPosX(9)+4, getPosY(3));
+            ctx.moveTo(getPosX(9)+2, getPosY(3));
             ctx.arc(getPosX(9), getPosY(3), 4, 0, Math.PI*2);
-            ctx.moveTo(getPosX(15)+4, getPosY(3));
+            ctx.moveTo(getPosX(15)+2, getPosY(3));
             ctx.arc(getPosX(15), getPosY(3), 4, 0, Math.PI*2);
-            ctx.moveTo(getPosX(3)+4, getPosY(9));
+            ctx.moveTo(getPosX(3)+2, getPosY(9));
             ctx.arc(getPosX(3), getPosY(9), 4, 0, Math.PI*2);
-            ctx.moveTo(getPosX(9)+4, getPosY(9));
+            ctx.moveTo(getPosX(9)+2, getPosY(9));
             ctx.arc(getPosX(9), getPosY(9), 4, 0, Math.PI*2);
-            ctx.moveTo(getPosX(15)+4, getPosY(9));
+            ctx.moveTo(getPosX(15)+2, getPosY(9));
             ctx.arc(getPosX(15), getPosY(9), 4, 0, Math.PI*2);
-            ctx.moveTo(getPosX(3)+4, getPosY(15));
+            ctx.moveTo(getPosX(3)+2, getPosY(15));
             ctx.arc(getPosX(3), getPosY(15), 4, 0, Math.PI*2);
-            ctx.moveTo(getPosX(9)+4, getPosY(15));
+            ctx.moveTo(getPosX(9)+2, getPosY(15));
             ctx.arc(getPosX(9), getPosY(15), 4, 0, Math.PI*2);
-            ctx.moveTo(getPosX(15)+4, getPosY(15));
+            ctx.moveTo(getPosX(15)+2, getPosY(15));
             ctx.arc(getPosX(15), getPosY(15), 4, 0, Math.PI*2);
             ctx.fill();
             for(var i=0; i<19; i++) {
@@ -96,8 +96,9 @@
         function getPosY(y) {
             return (cvs.height-marg*2)/18*y+marg;
         }
-        cvs.onclick = function(e) {
-            var x = e.offsetX, y = e.offsetY;
+        cvs.onclick = e => clickEvent(e.offsetX, e.offsetY);
+        cvs.ontouchstart = e => clickEvent(e.touches[0].offsetX, e.touches[0].offsetY);
+        function clickEvent(x, y) {
             if(x<getPosX(0)-s/42||x>getPosX(18)+s/42||y<getPosY(0)-s/42||y>getPosY(18)+s/42)
                 return;
             x = Math.round((x-marg)/(cvs.width-marg*2)*18);

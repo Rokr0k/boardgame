@@ -11,7 +11,7 @@
     </head>
     <body style="margin: 0px; padding: 0px;">
         <canvas id="cvs" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></canvas>
-        <button id="nari" onclick="change=!change" style="position: absolute; top: 50%; left: 200px; transform: translate(-50%, 0);">成り</button>
+        <button id="nari" onclick="chng()" style="position: absolute; top: 50%; left: 200px; transform: translate(-50%, 0);">成り</button>
     </body>
     <script>
         let cvs = document.getElementById('cvs');
@@ -133,8 +133,10 @@
             ctx.fillStyle = 'black';
             ctx.fillText(caught, marg, cvs.height-marg);
             ctx.restore();
-            document.getElementById('nari').innerText = change?'成らない':'成り';
             requestAnimationFrame(draw);
+        }
+        function chng() {
+            document.getElementById('nari').innerText = (change=!change)?'成らない':'成り';
         }
         function getPosX(x) {
             return (cvs.width-marg*2)/9*(2*x+1)/2+marg;
@@ -143,8 +145,10 @@
             return (cvs.height-marg*2)/10*(2*y+1)/2+marg;
         }
         var change = false;
-        cvs.onclick = function(e) {
-            var x = Math.floor((e.offsetX-marg)*9/(cvs.width-marg*2)), y = Math.floor((e.offsetY-marg)*10/(cvs.height-marg*2));
+        cvs.onclick = e => clickEvent(e.offsetX, e.offsetY);
+        cvs.ontouchstart = e => clickEvent(e.touches[0].offsetX, e.touches[0].offsetY);
+        function clickEvent(_x, _y) {
+            var x = Math.floor((_x-marg)*9/(cvs.width-marg*2)), y = Math.floor((_y-marg)*10/(cvs.height-marg*2));
             if(x<0||x>8)
                 return;
             if(y<0) {
@@ -182,7 +186,9 @@
                         if(change&&!red[x][y].includes('+')&&pieces[red[x][y]+'+']) {
                             red[x][y] += '+';
                         }
-                        change = false;
+                        if(change) {
+                            chng();
+                        }
                         red[selection.x][selection.y] = '';
                         if(blu[8-x][9-y].length) {
                             bcaught.push(blu[8-x][9-y].replace('\+', ''));
@@ -194,7 +200,9 @@
                         if(change&&!blu[8-x][9-y].includes('+')&&pieces[blu[8-x][9-y]+'+']) {
                             blu[8-x][9-y] += '+';
                         }
-                        change = false;
+                        if(change) {
+                            chng();
+                        }
                         blu[8-selection.x][9-selection.y] = '';
                         if(red[x][y].length) {
                             rcaught.push(red[x][y].replace('\+', ''));

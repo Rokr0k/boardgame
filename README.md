@@ -7,5 +7,8 @@ Game with white and black stones.
 ## Shogi
 Japanese Chess
 
+## Janggi
+Korean Chess
+
 ## Go Survival
 Go but very aggressive battle royale.
