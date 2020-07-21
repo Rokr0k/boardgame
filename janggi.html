@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf8">
-        <title>Shogi</title>
+        <title>Janggi</title>
         <style>
             * {
                 user-select: none;
@@ -132,8 +132,6 @@
             ctx.arc(getPosX(7), getPosY(7), 4, 0, Math.PI*2);
             ctx.fill();
             size = {x: (cvs.width-marg*2)/9, y: (cvs.height-marg*2)/10};
-            ctx.stroke();
-            ctx.closePath();
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             for(var i=0; i<9; i++) {
@@ -153,8 +151,6 @@
             ctx.translate(cvs.width/2, cvs.height/2);
             ctx.rotate(Math.PI);
             ctx.translate(-cvs.width/2, -cvs.height/2);
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
             for(var i=0; i<9; i++) {
                 for(var j=0; j<10; j++) {
                     if(blu[i][j].length) {
