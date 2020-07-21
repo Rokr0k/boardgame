@@ -1,10 +1,11 @@
 # Boardgame
 Some classic boardgames made with HTML5 and JavaScript.
-## XiangQi
-Chinese chess.
-## JangGi
-Korean chess.
-## Shogi
-Japanese chess.
+
 ## Go
-aka. Weiqi, Baduk. Game with white stones and black stones.
+Game with white and black stones.
+
+## Shogi
+Japanese Chess
+
+## Go Survival
+Go but very aggressive battle royale.

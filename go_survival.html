@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <title>Go Survival</title>
+        <style>
+            * {
+                user-select: none;
+            }
+        </style>
+    </head>
+    <body style="margin: 0px; padding: 0px;">
+        <canvas id="cvs" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></canvas>
+    </body>
+    <script>
+        let cvs = document.getElementById('cvs');
+        let ctx = cvs.getContext('2d');
+        class Vector {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+            plus(v) {
+                return new Vector(this.x+v.x, this.y+v.y);
+            }
+            minus(v) {
+                return new Vector(this.x-v.x, this.y-v.y);
+            }
+            timesNumber(v) {
+                return new Vector(this.x*v, this.y*v);
+            }
+            modNumber(v) {
+                return new Vector(this.x/v, this.y/v);
+            }
+            innerProduct(v) {
+                return this.x*v.x+this.y*v.y;
+            }
+            length() {
+                return Math.sqrt(this.x*this.x+this.y*this.y);
+            }
+            normalize() {
+                return this.modNumber(this.length());
+            }
+        }
+        class Stone {
+            constructor(pos, color) {
+                this.pos = pos;
+                this.t = 0;
+                this.delta = new Vector(0, 0);
+                this.color = color;
+            }
+            update() {
+                this.pos = this.pos.plus(this.delta.timesNumber(0.3));
+                this.delta = this.delta.timesNumber(0.9);
+            }
+            checkCollide(v) {
+                if(this.pos.minus(v.pos).length()<s/21) {
+                    var middle = this.pos.plus(v.pos).timesNumber(0.5);
+                    var d1 = this.pos.minus(middle).length(), d2 = v.pos.minus(middle).length();
+                    this.pos = this.pos.plus(this.pos.minus(middle).normalize().timesNumber(s/42-d1));
+                    v.pos = v.pos.plus(v.pos.minus(middle).normalize().timesNumber(s/42-d2));
+                    var x1 = new Vector(this.pos.x, this.pos.y), x2 = new Vector(v.pos.x, v.pos.y), v1 = new Vector(this.delta.x, this.delta.y), v2 = new Vector(v.delta.x, v.delta.y);
+                    this.delta = v1.minus(x1.minus(x2).timesNumber(v1.minus(v2).innerProduct(x1.minus(x2))).modNumber(x1.minus(x2).length()*x1.minus(x2).length()));
+                    v.delta = v2.minus(x2.minus(x1).timesNumber(v2.minus(v1).innerProduct(x2.minus(x1))).modNumber(x2.minus(x1).length()*x2.minus(x1).length()));
+                }
+            }
+        }
+        var stones = [];
+        const marg = 50;
+        (function() {
+            draw();
+            stones = [
+                new Stone(new Vector(getPosX(3), getPosY(3)), 'black'),
+                new Stone(new Vector(getPosX(6), getPosY(5)), 'black'),
+                new Stone(new Vector(getPosX(9), getPosY(3)), 'black'),
+                new Stone(new Vector(getPosX(12), getPosY(5)), 'black'),
+                new Stone(new Vector(getPosX(15), getPosY(3)), 'black'),
+                new Stone(new Vector(getPosX(3), getPosY(15)), 'white'),
+                new Stone(new Vector(getPosX(6), getPosY(13)), 'white'),
+                new Stone(new Vector(getPosX(9), getPosY(15)), 'white'),
+                new Stone(new Vector(getPosX(12), getPosY(13)), 'white'),
+                new Stone(new Vector(getPosX(15), getPosY(15)), 'white')
+            ];
+        })();
+        var s;
+        var selection = -1;
+        var mousePos = new Vector(0, 0);
+        function draw() {
+            s = Math.min(window.innerWidth, window.innerHeight);
+            cvs.width = cvs.height = s;
+            ctx.fillStyle = 'peachpuff';
+            ctx.fillRect(0, 0, cvs.width, cvs.height);
+            ctx.fillStyle = ctx.strokeStyle = 'black';
+            ctx.beginPath();
+            for(var i=0; i<19; i++) {
+                ctx.moveTo(getPosX(0), getPosY(i));
+                ctx.lineTo(getPosX(18), getPosY(i));
+                ctx.moveTo(getPosX(i), getPosY(0));
+                ctx.lineTo(getPosX(i), getPosY(18));
+            }
+            ctx.stroke();
+            ctx.closePath();
+            ctx.beginPath();
+            ctx.moveTo(getPosX(3)+4, getPosY(3));
+            ctx.arc(getPosX(3), getPosY(3), 4, 0, Math.PI*2);
+            ctx.moveTo(getPosX(9)+4, getPosY(3));
+            ctx.arc(getPosX(9), getPosY(3), 4, 0, Math.PI*2);
+            ctx.moveTo(getPosX(15)+4, getPosY(3));
+            ctx.arc(getPosX(15), getPosY(3), 4, 0, Math.PI*2);
+            ctx.moveTo(getPosX(3)+4, getPosY(9));
+            ctx.arc(getPosX(3), getPosY(9), 4, 0, Math.PI*2);
+            ctx.moveTo(getPosX(9)+4, getPosY(9));
+            ctx.arc(getPosX(9), getPosY(9), 4, 0, Math.PI*2);
+            ctx.moveTo(getPosX(15)+4, getPosY(9));
+            ctx.arc(getPosX(15), getPosY(9), 4, 0, Math.PI*2);
+            ctx.moveTo(getPosX(3)+4, getPosY(15));
+            ctx.arc(getPosX(3), getPosY(15), 4, 0, Math.PI*2);
+            ctx.moveTo(getPosX(9)+4, getPosY(15));
+            ctx.arc(getPosX(9), getPosY(15), 4, 0, Math.PI*2);
+            ctx.moveTo(getPosX(15)+4, getPosY(15));
+            ctx.arc(getPosX(15), getPosY(15), 4, 0, Math.PI*2);
+            ctx.fill();
+            if(selection>=0) {
+                ctx.strokeStyle = 'red';
+                ctx.beginPath();
+                ctx.moveTo(stones[selection].pos.x, stones[selection].pos.y);
+                ctx.lineTo(mousePos.x, mousePos.y);
+                ctx.stroke();
+                ctx.closePath();
+            }
+            stones.forEach(element => {
+                ctx.fillStyle = element.color;
+                ctx.beginPath();
+                ctx.arc(element.pos.x, element.pos.y, s/42, 0, Math.PI*2);
+                ctx.fill();
+                element.update();
+            });
+            for(var i=0; i<stones.length-1; i++) {
+                for(var j=i+1; j<stones.length; j++) {
+                    stones[i].checkCollide(stones[j]);
+                }
+            }
+            requestAnimationFrame(draw);
+        }
+        function getPosX(x) {
+            return (cvs.width-marg*2)/18*x+marg;
+        }
+        function getPosY(y) {
+            return (cvs.height-marg*2)/18*y+marg;
+        }
+        cvs.onmousedown = function(e) {
+            if(e.button==0) {
+                selection = -1;
+                stones.forEach((element, index) => {
+                    if(element.pos.minus(new Vector(e.offsetX, e.offsetY)).length()<s/42)
+                        selection = index;
+                });
+            }
+        }
+        cvs.onmousemove = function(e) {
+            mousePos.x = e.offsetX;
+            mousePos.y = e.offsetY;
+        }
+        cvs.onmouseup = function(e) {
+            if(selection>=0) {
+                stones[selection].delta = stones[selection].pos.minus(mousePos);
+            }
+            selection = -1;
+        }
+    </script>
+</html>
