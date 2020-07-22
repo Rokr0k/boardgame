@@ -41,8 +41,8 @@
                     blu[i][j] = '';
                 }
             }
-            red[3][7] = 'wk';
-            red[4][7] = 'wq';
+            red[4][7] = 'wk';
+            red[3][7] = 'wq';
             red[2][7] = red[5][7] = 'wb';
             red[1][7] = red[6][7] = 'wn';
             red[0][7] = red[7][7] = 'wr';
@@ -136,7 +136,7 @@
                     if(red[x][y].length) {
                         red[x][y] = '';
                     }
-                    if(blu[7-x][7-y]=='bp'&&!(7-y)) {
+                    if(blu[7-x][7-y]=='bp'&&7==y) {
                         var type = prompt("Input Type ('bp' means 'b'lack 'p'awn)");
                         if(pieces[type]) {
                             blu[7-x][7-y] = type;

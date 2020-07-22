@@ -7,6 +7,10 @@
             * {
                 user-select: none;
             }
+            @font-face {
+                font-family: Choseo;
+                src: url(liujianmaocao.ttf);
+            }
         </style>
     </head>
     <body style="margin: 0px; padding: 0px;">
@@ -28,7 +32,7 @@
             '한포': '包',
             '초상': '象',
             '한상': '象',
-            '초마': '馬',
+            '초마': '马',
             '한마': '馬',
             '초병': '卒',
             '한병': '兵'
@@ -154,7 +158,7 @@
             for(var i=0; i<9; i++) {
                 for(var j=0; j<10; j++) {
                     if(blu[i][j].length) {
-                        ctx.font = size.y/sizes[blu[i][j]]+'px Meiryo';
+                        ctx.font = size.y/sizes[blu[i][j]]+'px Choseo';
                         ctx.fillStyle = 'white';
                         ctx.beginPath();
                         ctx.arc(getPosX(i), getPosY(j), size.y/sizes[blu[i][j]]/1.5, 0, Math.PI*2);
