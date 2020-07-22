@@ -7,11 +7,15 @@
             * {
                 user-select: none;
             }
+            @font-face {
+                font-family: Noto;
+                src: url(notosanstc.otf)
+            }
         </style>
     </head>
     <body style="margin: 0px; padding: 0px;">
         <canvas id="cvs" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></canvas>
-        <button id="nari" onclick="chng()" style="position: absolute; top: 50%; left: 200px; transform: translate(-50%, 0);">成り</button>
+        <button id="nari" onclick="chng()">成り</button>
     </body>
     <script>
         let cvs = document.getElementById('cvs');
@@ -79,7 +83,7 @@
             ctx.stroke();
             ctx.closePath();
             ctx.fillStyle = 'gray';
-            ctx.font = size.y/2+'px Meiryo';
+            ctx.font = size.y/2+'px Noto';
             if(selection!=-1) {
                 if(selection.s=='r') {
                     ctx.textAlign = 'left';

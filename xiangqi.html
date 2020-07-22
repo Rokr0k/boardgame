@@ -7,6 +7,10 @@
             * {
                 user-select: none;
             }
+            @font-face {
+                font-family: Noto;
+                src: url(notosanstc.otf);
+            }
         </style>
     </head>
     <body style="margin: 0px; padding: 0px;">
@@ -94,7 +98,7 @@
             size = {x: (cvs.width-marg*2)/9, y: (cvs.height-marg*2)/10};
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.font = size.y/1.5+'px Meiryo';
+            ctx.font = size.y/1.5+'px Noto';
             for(var i=0; i<9; i++) {
                 for(var j=0; j<10; j++) {
                     if(red[i][j].length) {

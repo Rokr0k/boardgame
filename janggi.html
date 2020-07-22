@@ -11,11 +11,15 @@
                 font-family: Choseo;
                 src: url(liujianmaocao.ttf);
             }
+            @font-face {
+                font-family: Noto;
+                src: url(notosanstc.otf);
+            }
         </style>
     </head>
     <body style="margin: 0px; padding: 0px;">
         <canvas id="cvs" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></canvas>
-        <input id='choser' type='checkbox' checked='true' placeholder='초서'><label for='choser'>초서</label>
+        <input id="choser" type="checkbox" checked="true"><label for="choser">초서</label>
     </body>
     <script>
         let choser = document.getElementById('choser');
@@ -143,7 +147,7 @@
             for(var i=0; i<9; i++) {
                 for(var j=0; j<10; j++) {
                     if(red[i][j].length) {
-                        ctx.font = size.y/sizes[red[i][j]]+'px Meiryo';
+                        ctx.font = size.y/sizes[red[i][j]]+'px Noto';
                         ctx.fillStyle = 'white';
                         ctx.beginPath();
                         ctx.arc(getPosX(i), getPosY(j), size.y/sizes[red[i][j]]/1.5, 0, Math.PI*2);
@@ -160,7 +164,7 @@
             for(var i=0; i<9; i++) {
                 for(var j=0; j<10; j++) {
                     if(blu[i][j].length) {
-                        ctx.font = size.y/sizes[blu[i][j]]+'px '+(choser.checked?'Choseo':'Meiryo');
+                        ctx.font = size.y/sizes[blu[i][j]]+'px '+(choser.checked?'Choseo':'Noto');
                         ctx.fillStyle = 'white';
                         ctx.beginPath();
                         ctx.arc(getPosX(i), getPosY(j), size.y/sizes[blu[i][j]]/1.5, 0, Math.PI*2);
