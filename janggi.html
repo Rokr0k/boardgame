@@ -3,17 +3,11 @@
     <head>
         <meta charset="utf8">
         <title>Janggi</title>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet">
         <style>
             * {
                 user-select: none;
-            }
-            @font-face {
-                font-family: Choseo;
-                src: url(liujianmaocao.ttf);
-            }
-            @font-face {
-                font-family: Noto;
-                src: url(notosanstc.otf);
             }
         </style>
     </head>
@@ -147,7 +141,7 @@
             for(var i=0; i<9; i++) {
                 for(var j=0; j<10; j++) {
                     if(red[i][j].length) {
-                        ctx.font = size.y/sizes[red[i][j]]+'px Noto';
+                        ctx.font = size.y/sizes[red[i][j]]+'px Noto Sans TC';
                         ctx.fillStyle = 'white';
                         ctx.beginPath();
                         ctx.arc(getPosX(i), getPosY(j), size.y/sizes[red[i][j]]/1.5, 0, Math.PI*2);
@@ -164,7 +158,7 @@
             for(var i=0; i<9; i++) {
                 for(var j=0; j<10; j++) {
                     if(blu[i][j].length) {
-                        ctx.font = size.y/sizes[blu[i][j]]+'px '+(choser.checked?'Choseo':'Noto');
+                        ctx.font = size.y/sizes[blu[i][j]]+'px '+(choser.checked?'Liu Jian Mao Cao':'Noto Sans TC');
                         ctx.fillStyle = 'white';
                         ctx.beginPath();
                         ctx.arc(getPosX(i), getPosY(j), size.y/sizes[blu[i][j]]/1.5, 0, Math.PI*2);

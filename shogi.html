@@ -3,13 +3,10 @@
     <head>
         <meta charset="utf8">
         <title>Shogi</title>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
         <style>
             * {
                 user-select: none;
-            }
-            @font-face {
-                font-family: Noto;
-                src: url(notosanstc.otf)
             }
         </style>
     </head>
@@ -83,7 +80,7 @@
             ctx.stroke();
             ctx.closePath();
             ctx.fillStyle = 'gray';
-            ctx.font = size.y/2+'px Noto';
+            ctx.font = size.y/2+'px Noto Sans TC';
             if(selection!=-1) {
                 if(selection.s=='r') {
                     ctx.textAlign = 'left';

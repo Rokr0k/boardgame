@@ -3,13 +3,10 @@
     <head>
         <meta charset="utf8">
         <title>Xiangqi</title>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
         <style>
             * {
                 user-select: none;
-            }
-            @font-face {
-                font-family: Noto;
-                src: url(notosanstc.otf);
             }
         </style>
     </head>
@@ -98,7 +95,7 @@
             size = {x: (cvs.width-marg*2)/9, y: (cvs.height-marg*2)/10};
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.font = size.y/1.5+'px Noto';
+            ctx.font = size.y/1.5+'px Noto Sans TC';
             for(var i=0; i<9; i++) {
                 for(var j=0; j<10; j++) {
                     if(red[i][j].length) {
