@@ -62,7 +62,7 @@
         const marg = 80;
         let size;
         function draw() {
-            s = Math.min(window.innerWidth, window.innerHeight);
+            var s = Math.min(window.innerWidth, window.innerHeight);
             cvs.width = cvs.height = s;
             ctx.fillStyle = 'peachpuff';
             ctx.fillRect(0, 0, cvs.width, cvs.height);
