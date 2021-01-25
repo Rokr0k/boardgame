@@ -1,6 +1,6 @@
 # Boardgame
 Some classic boardgames made with HTML5 and JavaScript.
-[Go to](https://01320nabi.github.io/boardgame)
+[Go to](https://rokr0k.tk/boardgame)
 
 ## Chess
 Western Chess
