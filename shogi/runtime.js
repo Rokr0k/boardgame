@@ -62,7 +62,7 @@ function draw() {
     ctx.stroke();
     ctx.closePath();
     ctx.fillStyle = 'gray';
-    ctx.font = size.y/2+'px Noto Serif TC';
+    ctx.font = size.y/2+'px Noto Serif JP';
     if(selection!=-1) {
         if(selection.s=='r') {
             ctx.textAlign = 'left';
