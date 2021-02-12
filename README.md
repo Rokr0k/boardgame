@@ -16,6 +16,3 @@ Korean Chess
 
 ## Shogi
 Japanese Chess
-
-## Go Survival
-Go but very aggressive battle royale.
