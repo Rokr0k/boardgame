@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <title>Go</title>
+        <style>
+            * {
+                user-select: none;
+            }
+        </style>
+    </head>
+    <body style="margin: 0px; padding: 0px;">
+        <canvas id="cvs" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></canvas>
+    </body>
+    <script>
+        let cvs = document.getElementById('cvs');
+        let ctx = cvs.getContext('2d');
+    </script>
+    <script src="runtime.js"></script>
+</html>
